@@ -42,4 +42,9 @@ class TestOrderPricing < MiniTest::Test
     product_type_markup_rate = MARKUP_RATES[:product_type_markup][@order2.product_type.to_sym]
     assert_equal(product_type_markup_rate, @order2.get_product_type_markup_rate)
   end
+
+  def test_calculate_price_with_flat_markup
+    price_with_flat_markup = @order2.base_price * (1 + MARKUP_RATES[:flat_markup])
+    assert_equal(price_with_flat_markup, @order2.get_price_with_flat_markup)
+  end
 end

@@ -19,4 +19,8 @@ class Order
   def get_product_type_markup_rate
     MARKUP_RATES[:product_type_markup][@product_type.to_sym]
   end
+
+  def get_price_with_flat_markup
+    @base_price * (1 + MARKUP_RATES[:flat_markup])
+  end
 end
