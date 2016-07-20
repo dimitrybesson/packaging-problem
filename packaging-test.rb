@@ -5,7 +5,7 @@ class TestOrderPricing < MiniTest::Test
 
   def setup
     @order = Order.new()
-    @order1 = Order.new(base_price: 100, number_of_workers: 5, product_type: 'food')
+    @order1 = Order.new(base_price: 1299.99, number_of_workers: 3, product_type: 'food')
   end
 
   def test_order_object_is_instance_of_order
@@ -30,6 +30,11 @@ class TestOrderPricing < MiniTest::Test
 
   def test_order_sets_input_attributes
     order_attributes = [@order1.base_price, @order1.number_of_workers, @order1.product_type]
-    assert_equal([100, 5, 'food'], order_attributes)
+    assert_equal([1299.99, 3, 'food'], order_attributes)
+  end
+
+  def test_get_worker_markup_rate
+    worker_markup = WORKER_MARKUP * @order1.number_of_workers
+    assert_equal(worker_markup, @order1.get_worker_markup_rate)
   end
 end
