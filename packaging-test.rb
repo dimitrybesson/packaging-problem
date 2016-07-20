@@ -24,6 +24,10 @@ class TestOrderPricing < MiniTest::Test
     assert_equal(@order.product_type, nil)
   end
 
+  def test_order_has_total_price_attribute
+    assert_equal(@order.total_price, nil)
+  end
+
   def test_order_sets_input_attributes
     order_attributes = [@order1.base_price, @order1.number_of_workers, @order1.product_type]
     assert_equal([100, 5, 'food'], order_attributes)
