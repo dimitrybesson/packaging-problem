@@ -23,4 +23,8 @@ class Order
   def get_price_with_flat_markup
     @base_price * (1 + MARKUP_RATES[:flat_markup])
   end
+
+  def get_total_additional_markup_rate
+    get_worker_markup_rate + get_product_type_markup_rate
+  end
 end

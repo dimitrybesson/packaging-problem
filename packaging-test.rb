@@ -44,4 +44,8 @@ class TestOrderPricing < MiniTest::Test
   def test_calculate_price_with_flat_markup
     assert_equal(1364.9895, @order2.get_price_with_flat_markup.round(4))
   end
+
+  def test_get_total_additional_markup_rate
+    assert_equal(0.166, @order2.get_total_additional_markup_rate)
+  end
 end
