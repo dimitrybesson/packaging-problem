@@ -32,22 +32,6 @@ class TestOrderPricing < MiniTest::Test
     assert_equal([1299.99, 3, 'food'], order_attributes)
   end
 
-  def test_get_worker_markup_rate
-    assert_equal(0.036, @order2.get_worker_markup_rate.round(3))
-  end
-
-  def test_get_product_type_markup_rate
-    assert_equal(0.13, @order2.get_product_type_markup_rate)
-  end
-
-  def test_calculate_price_with_flat_markup
-    assert_equal(1364.9895, @order2.get_price_with_flat_markup.round(4))
-  end
-
-  def test_get_total_additional_markup_rate
-    assert_equal(0.166, @order2.get_total_additional_markup_rate)
-  end
-
   def test_get_total_price_with_product_type_food
     assert_equal(1591.58, @order2.get_total_price)
   end
@@ -71,4 +55,21 @@ class TestOrderPricing < MiniTest::Test
   def test_get_total_price_should_handle_0_inputs
     assert_equal(0, @order5.get_total_price)
   end
+
+  ## TESTS FOR PRIVATE METHODS
+  # def test_get_worker_markup_rate
+  #   assert_equal(0.036, @order2.get_worker_markup_rate.round(3))
+  # end
+  #
+  # def test_get_product_type_markup_rate
+  #   assert_equal(0.13, @order2.get_product_type_markup_rate)
+  # end
+  #
+  # def test_calculate_price_with_flat_markup
+  #   assert_equal(1364.9895, @order2.get_price_with_flat_markup.round(4))
+  # end
+  #
+  # def test_get_total_additional_markup_rate
+  #   assert_equal(0.166, @order2.get_total_additional_markup_rate)
+  # end
 end

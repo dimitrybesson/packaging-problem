@@ -21,6 +21,8 @@ class Order
     end
   end
 
+private
+
   def get_worker_markup_rate
     @number_of_workers * MARKUP_RATES[:worker_markup]
   end
