@@ -6,6 +6,8 @@ class TestOrderPricing < MiniTest::Test
   def setup
     @order1 = Order.new()
     @order2 = Order.new(base_price: 1299.99, number_of_workers: 3, product_type: 'food')
+    @order3 = Order.new(base_price: 5432.00, number_of_workers: 1, product_type: 'drugs')
+    @order4 = Order.new(base_price: 12456.95, number_of_workers: 4, product_type: 'books')
   end
 
   def test_order_object_is_instance_of_order
@@ -47,5 +49,17 @@ class TestOrderPricing < MiniTest::Test
 
   def test_get_total_additional_markup_rate
     assert_equal(0.166, @order2.get_total_additional_markup_rate)
+  end
+
+  def test_get_total_price_with_product_type_food
+    assert_equal(1591.58, @order2.get_total_price)
+  end
+
+  def test_get_total_price_with_product_type_drugs
+    assert_equal(6199.81, @order3.get_total_price)
+  end
+
+  def test_get_total_price_with_product_type_other
+    assert_equal(13707.63, @order4.get_total_price)
   end
 end

@@ -17,7 +17,7 @@ class Order
   end
 
   def get_product_type_markup_rate
-    MARKUP_RATES[:product_type_markup][@product_type.to_sym]
+    MARKUP_RATES[:product_type_markup][@product_type.to_sym] || 0
   end
 
   def get_price_with_flat_markup
@@ -26,5 +26,10 @@ class Order
 
   def get_total_additional_markup_rate
     get_worker_markup_rate + get_product_type_markup_rate
+  end
+
+  def get_total_price
+    total_price = get_price_with_flat_markup * (1 + get_total_additional_markup_rate)
+    total_price.round(2)
   end
 end
