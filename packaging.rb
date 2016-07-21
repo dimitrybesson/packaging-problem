@@ -5,11 +5,11 @@ MARKUP_RATES = { flat_markup: 0.05,
 
 class Order
   attr_reader :base_price, :number_of_workers, :product_type, :total_price
-  
+
   def initialize(order_details = {})
-    @base_price = order_details[:base_price] || nil
-    @number_of_workers = order_details[:number_of_workers] || nil
-    @product_type = order_details[:product_type] || nil
+    @base_price = order_details[:base_price]
+    @number_of_workers = order_details[:number_of_workers]
+    @product_type = order_details[:product_type]
   end
 
   def get_total_price
