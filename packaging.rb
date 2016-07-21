@@ -5,11 +5,11 @@ MARKUP_RATES = { flat_markup: 0.05,
 
 class Order
   attr_reader :base_price, :number_of_workers, :product_type, :total_price
+  
   def initialize(order_details = {})
     @base_price = order_details[:base_price] || nil
     @number_of_workers = order_details[:number_of_workers] || nil
     @product_type = order_details[:product_type] || nil
-    @total_price = nil
   end
 
   def get_total_price
@@ -17,7 +17,7 @@ class Order
       total_price = get_price_with_flat_markup * (1 + get_total_additional_markup_rate)
       total_price.round(2)
     else
-      raise ArgumentError, "Insufficient Input"
+      raise ArgumentError, "Insufficient Order details."
     end
   end
 
@@ -36,6 +36,4 @@ class Order
   def get_total_additional_markup_rate
     get_worker_markup_rate + get_product_type_markup_rate
   end
-
-
 end

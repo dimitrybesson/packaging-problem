@@ -8,6 +8,7 @@ class TestOrderPricing < MiniTest::Test
     @order2 = Order.new(base_price: 1299.99, number_of_workers: 3, product_type: 'food')
     @order3 = Order.new(base_price: 5432.00, number_of_workers: 1, product_type: 'drugs')
     @order4 = Order.new(base_price: 12456.95, number_of_workers: 4, product_type: 'books')
+    @order5 = Order.new(base_price: 0, number_of_workers: 0, product_type: 'other')
   end
 
   def test_order_object_is_instance_of_order
@@ -24,10 +25,6 @@ class TestOrderPricing < MiniTest::Test
 
   def test_order_has_product_type_attribute
     assert_equal(@order1.product_type, nil)
-  end
-
-  def test_order_has_total_price_attribute
-    assert_equal(@order1.total_price, nil)
   end
 
   def test_order_sets_input_attributes
@@ -69,5 +66,9 @@ class TestOrderPricing < MiniTest::Test
     assert_raises ArgumentError do
       @order1.get_total_price
     end
+  end
+
+  def test_get_total_price_should_handle_0_inputs
+    assert_equal(0, @order5.get_total_price)
   end
 end
