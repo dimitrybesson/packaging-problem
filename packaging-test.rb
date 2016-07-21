@@ -34,17 +34,14 @@ class TestOrderPricing < MiniTest::Test
   end
 
   def test_get_worker_markup_rate
-    worker_markup = MARKUP_RATES[:worker_markup] * @order2.number_of_workers
-    assert_equal(worker_markup, @order2.get_worker_markup_rate)
+    assert_equal(0.036, @order2.get_worker_markup_rate.round(3))
   end
 
   def test_get_product_type_markup_rate
-    product_type_markup_rate = MARKUP_RATES[:product_type_markup][@order2.product_type.to_sym]
-    assert_equal(product_type_markup_rate, @order2.get_product_type_markup_rate)
+    assert_equal(0.13, @order2.get_product_type_markup_rate)
   end
 
   def test_calculate_price_with_flat_markup
-    price_with_flat_markup = @order2.base_price * (1 + MARKUP_RATES[:flat_markup])
-    assert_equal(price_with_flat_markup, @order2.get_price_with_flat_markup)
+    assert_equal(1364.9895, @order2.get_price_with_flat_markup.round(4))
   end
 end
