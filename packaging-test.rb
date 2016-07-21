@@ -62,4 +62,12 @@ class TestOrderPricing < MiniTest::Test
   def test_get_total_price_with_product_type_other
     assert_equal(13707.63, @order4.get_total_price)
   end
+
+  def test_raise_exception_for_insufficient_input
+    # assert_raises(ArgumentError, @order1.get_total_price)
+    # @order1.get_total_price.must_raise ArgumentError.new("Insufficient input.")
+    assert_raises ArgumentError do
+      @order1.get_total_price
+    end
+  end
 end

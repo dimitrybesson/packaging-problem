@@ -12,6 +12,15 @@ class Order
     @total_price = nil
   end
 
+  def get_total_price
+    if @base_price && @number_of_workers && @product_type
+      total_price = get_price_with_flat_markup * (1 + get_total_additional_markup_rate)
+      total_price.round(2)
+    else
+      raise ArgumentError, "Insufficient Input"
+    end
+  end
+
   def get_worker_markup_rate
     @number_of_workers * MARKUP_RATES[:worker_markup]
   end
@@ -28,8 +37,5 @@ class Order
     get_worker_markup_rate + get_product_type_markup_rate
   end
 
-  def get_total_price
-    total_price = get_price_with_flat_markup * (1 + get_total_additional_markup_rate)
-    total_price.round(2)
-  end
+
 end
