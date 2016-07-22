@@ -9,6 +9,7 @@ class TestOrderPricing < MiniTest::Test
     @order3 = Order.new(base_price: 5432.00, number_of_workers: 1, product_type: 'drugs')
     @order4 = Order.new(base_price: 12456.95, number_of_workers: 4, product_type: 'books')
     @order5 = Order.new(base_price: 0, number_of_workers: 0, product_type: 'other')
+    @order6 = Order.new(base_price: -50, number_of_workers: -2)
   end
 
   def test_order_object_is_instance_of_order
@@ -45,8 +46,6 @@ class TestOrderPricing < MiniTest::Test
   end
 
   def test_raise_exception_for_insufficient_input
-    # assert_raises(ArgumentError, @order1.get_total_price)
-    # @order1.get_total_price.must_raise ArgumentError.new("Insufficient input.")
     assert_raises ArgumentError do
       @order1.get_total_price
     end
@@ -54,6 +53,14 @@ class TestOrderPricing < MiniTest::Test
 
   def test_get_total_price_should_handle_0_inputs
     assert_equal(0, @order5.get_total_price)
+  end
+
+  def test_negative_input_base_price_set_to_nil
+    assert_equal(nil, @order6.base_price)
+  end
+
+  def test_negative_input_number_of_workers_set_to_nil
+    assert_equal(nil, @order6.base_price)
   end
 
   ## TESTS FOR PRIVATE METHODS
